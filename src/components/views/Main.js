@@ -1,28 +1,19 @@
-import { AnchorLink, Header, BookShelf } from "../index";
+import PropTypes from "prop-types";
+import { AnchorLink,BookShelves } from "../index";
 const Main = ({ books, setBooks }) => {
   return (
     <>
-      <Header />
-      <div className="list-books-content">
-        <BookShelf
-          title="Currently Reading"
-          books={books}
-          setBooks={setBooks}
-          name="currentlyReading"
-        />
-        <BookShelf
-          title="Want to Read"
-          books={books}
-          setBooks={setBooks}
-          name="wantToRead"
-        />
-        <BookShelf title="Read" setBooks={setBooks} books={books} name="read" />
-      </div>
+      <BookShelves books={books} setBooks={setBooks} />
       <div className="open-search">
         <AnchorLink type="search" />
       </div>
     </>
   );
+};
+
+Main.propTypes = {
+  books: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
 };
 
 export default Main;

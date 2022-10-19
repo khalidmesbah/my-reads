@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { AnchorLink, Book, Loader, NotFound } from "../index";
-import Tilt from "react-tilt";
+import { SearchBar, SearchResults } from "../index";
+import PropTypes from "prop-types";
 import * as BooksApi from "../../BooksAPI";
 const Search = ({ books, setBooks }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,44 +36,21 @@ const Search = ({ books, setBooks }) => {
 
   return (
     <div className="search-books">
-      <div className="search-books-bar">
-        <AnchorLink type="main" />
-        <div className="search-books-input-wrapper">
-          <input
-            type="text"
-            placeholder="Search by title, author, or ISBN"
-            value={query}
-            onInput={(e) => setQuery(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="search-books-results">
-        {isLoading ? (
-          <Loader />
-        ) : isNotFound ? (
-          <NotFound />
-        ) : (
-          <ol className="books-grid">
-            {resultingBooks.map((book) => (
-              <Tilt
-                key={book.id}
-                options={{
-                  reset: true,
-                  speed: 500,
-                  transition: true,
-                  scale: 1.1,
-                }}
-              >
-                <li key={book.id}>
-                  <Book book={book} books={books} setBooks={setBooks} />
-                </li>
-              </Tilt>
-            ))}
-          </ol>
-        )}
-      </div>
+      <SearchBar query={query} setQuery={setQuery} />
+      <SearchResults
+        resultingBooks={resultingBooks}
+        isLoading={isLoading}
+        isNotFound={isNotFound}
+        books={books}
+        setBooks={setBooks}
+      />
     </div>
   );
+};
+
+Search.propTypes = {
+  books: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
 };
 
 export default Search;

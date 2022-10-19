@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import { Book } from "./index";
 import * as BooksAPI from "../BooksAPI";
 import Tilt from "react-tilt";
 
-const BookShelf = ({ title, books, name, setBooks }) => {
+const BookShelf = ({ name, title, books, setBooks }) => {
   const update = async (book, shelf) => {
     await BooksAPI.update(book, shelf);
     book.shelf = shelf;
@@ -50,6 +51,13 @@ const BookShelf = ({ title, books, name, setBooks }) => {
       </div>
     </div>
   );
+};
+
+BookShelf.propTypes = {
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
 };
 
 export default BookShelf;

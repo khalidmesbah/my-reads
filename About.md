@@ -1,12 +1,13 @@
 # The Stack
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 - TypeScript
 - React
 - React Router
 - React tilt
 - Redux
+- Redux Toolkit
 - Express
 - Node
 - JSX
@@ -19,8 +20,8 @@ The project emphasizes using React to build the application and provides an API 
 ## Application Setup
 - [x] The application was created with create-react-app and requires only npm install and npm start to get it installed and launched.
 - [ ] An updated README that describes the project and has instructions for installing and launching the project is included.
-- [ ] The main page shows three shelves for books. Each book is shown on the correct shelf, along with its title and all of its authors.
-- [ ] Each bookshelf is a reusable component.
+- [x] The main page shows three shelves for books. Each book is shown on the correct shelf, along with its title and all of its authors.
+- [x] Each bookshelf is a reusable component.
 
 ## Main Page
 - [x] The main page shows a control that allows users to move books between shelves. 
@@ -51,7 +52,7 @@ The project emphasizes using React to build the application and provides an API 
 - [x] Component state is passed down from parent components to child components.
 - [x] The state variable is not modified directly - the useState hook is used to add to function component.
 - [x] Books have the same state on both the search page and the main application page: If a book is on a bookshelf, that is reflected in both locations.
-- [ ] Components in the application are built as functions rather than as classes.
+- [x] Components in the application are built as functions rather than as classes.
 - [x] The code runs without errors.
 - [x] There are no warnings that resulted from not following the best practices listed in the documentation, such as using key for list items, or state update warnings on unmounted components.
 - [x] All code is functional and formatted properly.
@@ -110,19 +111,20 @@ The project emphasizes using React to build the application and provides an API 
 - [x] Add hover effects
 - [ ] Add Animation on scroll
 - [ ] Add Testing
-- [ ] Use PropTypes
+- [x] Use PropTypes
 - [x] Fix the problem if the first `<Select />` option
 - [x] Use Async/Await instead of promise chaining
 - [ ] Add EsLint
 - [ ] Add Prettier
 - [ ] Use TypeScript
+- [ ] Add Dark Mode
 
 # Submission Instructions - Project Submission Checklist
-- [ ] The project adheres the HTML style guidelines
-- [ ] The project adheres the CSS style guidelines
-- [ ] The project adheres the JavaScript style guidelines
-- [ ] The project adheres the Git style guidelines
-- [ ] I am confident all rubric items have been met and my project will pass as submitted.
-- [ ] Project builds correctly without errors and runs.
-- [ ] All required functionality exists and my project behaves as expected per the project's specifications.
+- [x] The project adheres the HTML style guidelines
+- [x] The project adheres the CSS style guidelines
+- [x] The project adheres the JavaScript style guidelines
+- [x] The project adheres the Git style guidelines
+- [x] I am confident all rubric items have been met and my project will pass as submitted.
+- [x] Project builds correctly without errors and runs.
+- [x] All required functionality exists and my project behaves as expected per the project's specifications.
 

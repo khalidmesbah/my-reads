@@ -73,11 +73,11 @@ const BookDetails = () => {
             <div className="about">
               <div className="info">
                 <p className="info-text">Published Date:</p>
-                <p>{publishedDate}</p>
+                <p>{publishedDate || "None"}</p>
               </div>
               <div className="info">
                 <p className="info-text">Publisher:</p>
-                <p>{publisher}</p>
+                <p>{publisher || "None"}</p>
               </div>
             </div>
           </div>

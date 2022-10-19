@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
 const Select = ({ book, books, setBooks }) => {
   const update = async (e) => {
@@ -19,6 +20,12 @@ const Select = ({ book, books, setBooks }) => {
       </select>
     </div>
   );
+};
+
+Select.propTypes = {
+  book: PropTypes.object.isRequired,
+  books: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
 };
 
 export default Select;

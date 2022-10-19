@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Select } from "./index";
 import { Link } from "react-router-dom";
 const Book = ({ book, books, setBooks }) => {
@@ -19,6 +20,12 @@ const Book = ({ book, books, setBooks }) => {
       </div>
     </Link>
   );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  books: PropTypes.array.isRequired,
+  setBooks: PropTypes.func.isRequired,
 };
 
 export default Book;

@@ -8,28 +8,29 @@
 
 html,
 body,
-.root {
-  height: 100%;
+.root,
+.app {
+  height: 100vh;
 }
+
 body {
   line-height: 1.5;
-}
-body,
-.app {
-  background: white;
 }
 
 .app {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
+  flex-direction: column;
 }
 
 .content {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.dark {
+  background: #222;
+  color: #fff;
 }
 
 a {
@@ -49,6 +50,11 @@ a:visited {
   padding: 10px 0;
   background: #2e7c31;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 .list-books-title h1 {
   font-weight: 400;
@@ -60,7 +66,7 @@ a:visited {
   padding: 0 0 80px;
   flex: 1;
   display: grid;
-  gap:40px;
+  gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
@@ -106,7 +112,7 @@ a:visited {
 /* search page */
 
 .search-books {
-  height: 100vh;
+  height: 100%;
 }
 
 .search-books-bar {
@@ -159,7 +165,7 @@ a:visited {
   align-content: flex-start;
   flex-wrap: wrap;
   min-height: 100%;
-  outline: 2px dashed #000;
+  outline: 2px dashed;
   list-style-type: none;
 }
 .books-grid li {
@@ -230,6 +236,13 @@ a:visited {
 
 /* loader */
 
+.loader-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loader {
   height: 20vmin;
   width: 20vmin;
@@ -247,7 +260,7 @@ a:visited {
   position: absolute;
   height: 25%;
   width: 5%;
-  background: hsl(0 0% 15%);
+  background: currentColor;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
@@ -261,7 +274,6 @@ a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
   height: 100%;
   font-size: clamp(20px, 25vw, 25vh);
   text-align: center;
@@ -325,7 +337,7 @@ a:visited {
   margin-top: 30px;
 }
 
-.book-details button *{
+.book-details button * {
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
@@ -347,4 +359,77 @@ a:visited {
 .book-details button *:focus {
   outline: var(--outline);
   outline-offset: -6px;
+}
+
+/* switch button */
+.switch-wrapper {
+  display: flex;
+  font-size: 20px;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+}
+.switch {
+  position: relative;
+  width: 65px;
+  height: 27px;
+  margin: 0;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  background-color: darkgray;
+  transition: all 1s;
+  border-radius: 25px;
+}
+.switch::before {
+  content: "";
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  transition: all 0.5s;
+  transform: translate(2px, 2px);
+  transition-timing-function: cubic-bezier(0.81, -0.02, 0, 2.13);
+  transition-delay: 0.1s;
+  box-shadow: inset 2px 0px 4px rgba(0, 0, 0, 0.5),
+    -2px 0px 2px rgba(0, 0, 0, 0.5);
+  animation: off 1s forwards;
+}
+.switch:checked {
+  background-color: #0fbcf9;
+  transition: all 1s;
+}
+.switch:checked::before {
+  transition: all 0.5s;
+  transform: translate(40px, 2px);
+  transition-timing-function: cubic-bezier(0.81, -0.02, 0, 2.13);
+  box-shadow: inset -2px 0px 4px rgba(0, 0, 0, 0.5),
+    2px 0px 2px rgba(0, 0, 0, 0.5);
+  transition-delay: 0.1s;
+  right: 43px;
+  animation: on 1s forwards;
+}
+
+@keyframes on {
+  0%,
+  50%,
+  100% {
+    width: 23px;
+  }
+  25% {
+    width: 33px;
+  }
+}
+@keyframes off {
+  0%,
+  50%,
+  100% {
+    width: 23px;
+  }
+  25% {
+    width: 33px;
+  }
 }

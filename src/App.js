@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Main, Search, Loader, BookDetails } from "./components/index";
+import { Main, Search, Loader, BookDetails, NavBar } from "./components/index";
 import * as BooksAPI from "./BooksAPI";
 import { Routes, Route } from "react-router-dom";
 
@@ -13,7 +13,8 @@ function App() {
   }, []);
   return (
     <div className="app">
-      {books.length >= 0 ? (
+      <NavBar />
+      {books.length > 0 ? (
         <div className="content">
           <Routes>
             <Route
