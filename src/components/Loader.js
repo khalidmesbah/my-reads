@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const spin = keyframes`
 0% { transform: rotate(0deg); }
@@ -14,27 +14,25 @@ const Loader = () => {
       <Spinner
         className="position-relative"
         style={{
-          "--count": "10",
-          height: "20vmin",
-          width: "20vmin",
-        }}
-      >
+          '--count': '10',
+          height: '20vmin',
+          width: '20vmin'
+        }}>
         {[...Array(10)].map((e, i) => (
           <span
             key={i}
             style={{
-              "--index": `${i}`,
-              position: "absolute",
-              height: "25%",
-              width: "5%",
-              background: "currentColor",
-              top: "50%",
-              left: "50%",
+              '--index': `${i}`,
+              position: 'absolute',
+              height: '25%',
+              width: '5%',
+              background: 'currentColor',
+              top: '50%',
+              left: '50%',
               transform:
-                "translate(-50%, -50%)rotate(calc(((360 / var(--count)) * var(--index)) * 1deg))translate(0, 100%)",
-              opacity: "calc(var(--index) / var(--count))",
-            }}
-          ></span>
+                'translate(-50%, -50%)rotate(calc(((360 / var(--count)) * var(--index)) * 1deg))translate(0, 100%)',
+              opacity: 'calc(var(--index) / var(--count))'
+            }}></span>
         ))}
       </Spinner>
     </div>

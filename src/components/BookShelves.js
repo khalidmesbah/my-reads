@@ -1,21 +1,16 @@
-import PropTypes from "prop-types";
-import { BookShelf } from "./index";
+import PropTypes from 'prop-types';
+import { BookShelf } from './index';
 
 const BookShelves = ({ books, setBooks }) => {
   return (
     <div
       className="p-3 d-flex gap-5 flex-wrap flex-grow-1"
-      style={{
-        // background:"red",
-        
-      }}
-    >
-      <BookShelf
-        title="Want to Read"
-        books={books}
-        setBooks={setBooks}
-        name="wantToRead"
-      />
+      style={
+        {
+          // background:"red",
+        }
+      }>
+      <BookShelf title="Want to Read" books={books} setBooks={setBooks} name="wantToRead" />
       <BookShelf
         title="Currently Reading"
         books={books}
@@ -29,7 +24,7 @@ const BookShelves = ({ books, setBooks }) => {
 
 BookShelves.propTypes = {
   books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func.isRequired
 };
 
 export default BookShelves;

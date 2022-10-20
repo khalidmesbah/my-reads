@@ -95,8 +95,8 @@ HTML5 | CSS3 | JavaScript | TypeScript | React | React Router | React tilt | Red
 - [x] Use PropTypes
 - [x] Fix the problem if the first `<Select />` option
 - [x] Use Async/Await instead of promise chaining
-- [ ] Add EsLint
-- [ ] Add Prettier
+- [x] Add EsLint
+- [x] Add Prettier
 - [ ] Use TypeScript
 - [x] Add Dark Mode
 - [x] Make it responsive

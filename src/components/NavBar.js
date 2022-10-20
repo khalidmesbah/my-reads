@@ -1,19 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import {
-  addUser,
-  getCurrentUser,
-  getUsers,
-  setCurrentUser,
-  deleteUser,
-} from "../utils/token";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { addUser, getCurrentUser, getUsers, setCurrentUser, deleteUser } from '../utils/token';
+import PropTypes from 'prop-types';
 
 function NavBar({ setHasUserChanged }) {
   const navigate = useNavigate();
-  let mode = localStorage?.getItem("mode");
-  mode
-    ? (document.body.className = "bg-dark text-light")
-    : (document.body.className = "");
+  let mode = localStorage?.getItem('mode');
+  mode ? (document.body.className = 'bg-dark text-light') : (document.body.className = '');
   const [isNewUserAdded, setIsNewUserAdded] = useState(false);
 
   return (
@@ -30,8 +23,7 @@ function NavBar({ setHasUserChanged }) {
           type="button"
           title="button"
           aria-controls="nav"
-          aria-label="Expand navigation"
-        >
+          aria-label="Expand navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="nav">
@@ -42,17 +34,14 @@ function NavBar({ setHasUserChanged }) {
                 <select
                   className="form-select w-auto"
                   aria-label="select users"
-                  defaultValue={getCurrentUser() || "No Users Available"}
+                  defaultValue={getCurrentUser() || 'No Users Available'}
                   onChange={(e) => {
                     setCurrentUser(e.currentTarget.value);
                     setHasUserChanged((prev) => !prev);
-                    navigate("/");
-                  }}
-                >
+                    navigate('/');
+                  }}>
                   {getUsers().length === 0 && (
-                    <option value="No Users Available">
-                      No Users Available
-                    </option>
+                    <option value="No Users Available">No Users Available</option>
                   )}
                   {getUsers().map((u) => (
                     <option key={u} value={u}>
@@ -63,7 +52,7 @@ function NavBar({ setHasUserChanged }) {
                 <button
                   className="btn btn-danger"
                   title="delete current user"
-                  onClick={(e) => {
+                  onClick={() => {
                     deleteUser().then(
                       (res) => {
                         setIsNewUserAdded(!isNewUserAdded);
@@ -73,8 +62,7 @@ function NavBar({ setHasUserChanged }) {
                       },
                       (err) => console.error(err)
                     );
-                  }}
-                >
+                  }}>
                   X
                 </button>
               </span>
@@ -85,31 +73,24 @@ function NavBar({ setHasUserChanged }) {
                 role="search"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const emailElement = document.getElementById("user");
-                  emailElement.setAttribute("placeholder", "Add New User");
+                  const emailElement = document.getElementById('user');
+                  emailElement.setAttribute('placeholder', 'Add New User');
                   const value = emailElement.value.trim();
                   if (!value) {
-                    emailElement.setAttribute(
-                      "placeholder",
-                      "Please, write a valid name."
-                    );
-                    emailElement.value = "";
+                    emailElement.setAttribute('placeholder', 'Please, write a valid name.');
+                    emailElement.value = '';
                     return;
                   }
                   if (getUsers().includes(value)) {
-                    emailElement.setAttribute(
-                      "placeholder",
-                      "The username is already taken."
-                    );
-                    emailElement.value = "";
+                    emailElement.setAttribute('placeholder', 'The username is already taken.');
+                    emailElement.value = '';
                     return;
                   }
                   addUser(value);
-                  emailElement.value = "";
+                  emailElement.value = '';
                   setIsNewUserAdded(!isNewUserAdded);
                   getUsers().length === 1 && setHasUserChanged((prev) => !prev);
-                }}
-              >
+                }}>
                 <input
                   className="form-control me-2"
                   type="text"
@@ -124,10 +105,7 @@ function NavBar({ setHasUserChanged }) {
               </form>
             </li>
             <li className="nav-item d-flex justify-content-center align-items-center">
-              <div
-                className="form-check form-switch w-auto h-auto"
-                style={{ cursor: "pointer" }}
-              >
+              <div className="form-check form-switch w-auto h-auto" style={{ cursor: 'pointer' }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -135,16 +113,15 @@ function NavBar({ setHasUserChanged }) {
                   id="flexSwitchCheckDefault"
                   defaultChecked={mode ? true : false}
                   onChange={(e) => {
-                    let mode = e.currentTarget.checked ? "dark" : "";
-                    localStorage.setItem("mode", mode);
+                    let mode = e.currentTarget.checked ? 'dark' : '';
+                    localStorage.setItem('mode', mode);
                     setHasUserChanged((prev) => !prev);
                   }}
                 />
                 <label
                   className="form-check-label"
                   htmlFor="flexSwitchCheckDefault"
-                  style={{ cursor: "pointer" }}
-                >
+                  style={{ cursor: 'pointer' }}>
                   Dark Mode
                 </label>
               </div>
@@ -155,5 +132,9 @@ function NavBar({ setHasUserChanged }) {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  setHasUserChanged: PropTypes.func.isRequired
+};
 
 export default NavBar;

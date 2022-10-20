@@ -1,5 +1,5 @@
-import { AnchorLink } from "./index";
-import PropTypes from "prop-types";
+import { AnchorLink } from './index';
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ query, setQuery }) => {
   return (
@@ -20,7 +20,7 @@ const SearchBar = ({ query, setQuery }) => {
 
 SearchBar.propTypes = {
   query: PropTypes.string.isRequired,
-  setQuery: PropTypes.func.isRequired,
+  setQuery: PropTypes.func.isRequired
 };
 
 export default SearchBar;

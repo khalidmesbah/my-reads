@@ -1,15 +1,15 @@
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { SearchBar, SearchResults } from "../components/index";
-import * as BooksApi from "../BooksAPI";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { SearchBar, SearchResults } from '../components/index';
+import * as BooksApi from '../BooksAPI';
 
 const Search = ({ books, setBooks }) => {
-  const [query, setQuery] = useState(localStorage?.getItem("query") || "");
+  const [query, setQuery] = useState(localStorage?.getItem('query') || '');
   const [isLoading, setIsLoading] = useState(false);
   const [resultingBooks, setResultingBooks] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("query", query);
+    localStorage.setItem('query', query);
 
     setIsLoading(true);
     let isCancelled = false;
@@ -28,7 +28,7 @@ const Search = ({ books, setBooks }) => {
       if (isCancelled) return;
 
       res.forEach((book) => {
-        book.shelf = books.find((b) => b.id === book.id)?.shelf || "none";
+        book.shelf = books.find((b) => b.id === book.id)?.shelf || 'none';
       });
       setResultingBooks(res);
       setIsLoading(false);
@@ -54,7 +54,7 @@ const Search = ({ books, setBooks }) => {
 
 Search.propTypes = {
   books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func.isRequired
 };
 
 export default Search;

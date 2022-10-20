@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { AnchorLink, BookShelves } from "../components/index";
+import PropTypes from 'prop-types';
+import { AnchorLink, BookShelves } from '../components/index';
 
 const Main = ({ books, setBooks }) => {
   return (
@@ -8,10 +8,9 @@ const Main = ({ books, setBooks }) => {
       <div
         className="position-fixed"
         style={{
-          right: "25px",
-          bottom: "25px",
-        }}
-      >
+          right: '25px',
+          bottom: '25px'
+        }}>
         <AnchorLink type="search" />
       </div>
     </>
@@ -20,7 +19,7 @@ const Main = ({ books, setBooks }) => {
 
 Main.propTypes = {
   books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func.isRequired
 };
 
 export default Main;

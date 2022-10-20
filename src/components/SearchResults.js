@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import { Book, Loader, NotFound } from "./index";
-import Tilt from "react-tilt";
+import PropTypes from 'prop-types';
+import { Book, Loader, NotFound } from './index';
+import Tilt from 'react-tilt';
 
 const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
   let isNotFound = resultingBooks.length === 0 ? true : false;
@@ -15,9 +15,8 @@ const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
         <ol
           className="h-100 d-flex justify-content-center flex-wrap align-items-start gap-3 p-3"
           style={{
-            listStyleType: "none",
-          }}
-        >
+            listStyleType: 'none'
+          }}>
           {resultingBooks.map((book) => (
             <Tilt
               key={book.id}
@@ -25,9 +24,8 @@ const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
                 reset: true,
                 speed: 500,
                 transition: true,
-                scale: 1.1,
-              }}
-            >
+                scale: 1.1
+              }}>
               <li>
                 <Book book={book} books={books} setBooks={setBooks} />
               </li>
@@ -43,7 +41,7 @@ SearchResults.propTypes = {
   resultingBooks: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func.isRequired
 };
 
 export default SearchResults;

@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import * as BooksAPI from "../BooksAPI";
+import PropTypes from 'prop-types';
+import * as BooksAPI from '../BooksAPI';
 
 const Select = ({ book, books, setBooks }) => {
   const update = (e) => {
@@ -14,9 +14,8 @@ const Select = ({ book, books, setBooks }) => {
       <select
         className="w-100 h-100 opacity-0"
         role="button"
-        defaultValue={book.shelf || "none"}
-        onChange={update}
-      >
+        defaultValue={book.shelf || 'none'}
+        onChange={update}>
         <option value="move to" disabled>
           Move To..
         </option>
@@ -32,7 +31,7 @@ const Select = ({ book, books, setBooks }) => {
 Select.propTypes = {
   book: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired,
+  setBooks: PropTypes.func.isRequired
 };
 
 export default Select;
