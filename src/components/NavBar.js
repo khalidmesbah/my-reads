@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   addUser,
@@ -9,6 +9,7 @@ import {
 } from "../utils/token";
 
 function NavBar({ setHasUserChanged }) {
+  const navigate = useNavigate();
   let mode = localStorage?.getItem("mode");
   mode
     ? (document.body.className = "bg-dark text-light")
@@ -45,6 +46,7 @@ function NavBar({ setHasUserChanged }) {
                   onChange={(e) => {
                     setCurrentUser(e.currentTarget.value);
                     setHasUserChanged((prev) => !prev);
+                    navigate("/");
                   }}
                 >
                   {getUsers().length === 0 && (
@@ -84,7 +86,25 @@ function NavBar({ setHasUserChanged }) {
                 onSubmit={(e) => {
                   e.preventDefault();
                   const emailElement = document.getElementById("user");
-                  addUser(emailElement.value);
+                  emailElement.setAttribute("placeholder", "Add New User");
+                  const value = emailElement.value.trim();
+                  if (!value) {
+                    emailElement.setAttribute(
+                      "placeholder",
+                      "Please, write a valid name."
+                    );
+                    emailElement.value = "";
+                    return;
+                  }
+                  if (getUsers().includes(value)) {
+                    emailElement.setAttribute(
+                      "placeholder",
+                      "The username is already taken."
+                    );
+                    emailElement.value = "";
+                    return;
+                  }
+                  addUser(value);
                   emailElement.value = "";
                   setIsNewUserAdded(!isNewUserAdded);
                   getUsers().length === 1 && setHasUserChanged((prev) => !prev);

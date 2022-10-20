@@ -39,10 +39,7 @@ function App() {
   }, [hasUserChanged]);
 
   return (
-    <div
-      className="d-flex flex-column"
-      style={{ minHeight: "100vh", height: "100%" }}
-    >
+    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <NavBar setHasUserChanged={setHasUserChanged} />
       {isNotFound ? (
         <NotFound />

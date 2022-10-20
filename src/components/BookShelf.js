@@ -14,7 +14,7 @@ const BookShelf = ({ name, title, books, setBooks }) => {
   return (
     <div
       className="bg-success d-flex flex-column flex-grow-1"
-      style={{ minWidth: "200px" }}
+      style={{ minWidth: "200px", minHeight: "300px" }}
     >
       <h2 className="text-center">{title}</h2>
       <div className="h-100">

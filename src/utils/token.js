@@ -5,7 +5,7 @@ if (!usersTokens) {
   localStorage.setItem(
     "usersTokens",
     JSON.stringify({
-      KhalidMesbah: localStorage.token,
+      CaptainAnonymous: localStorage.token,
     })
   );
 }

@@ -1,20 +1,10 @@
-# The Stack
-- HTML5
-- CSS3
-- JavaScript
-- TypeScript
-- React
-- React Router
-- React tilt
-- Redux
-- Redux Toolkit
-- Express
-- Node
-- JSX
-
 # Project Overview
 In the MyReads project, you'll create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
 The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
+
+# The Stack
+HTML5 | CSS3 | JavaScript | TypeScript | React | React Router | React tilt | Redux | Redux Toolkit | Express | Node | JSX | Styled Components | BootStrap | Sweetalert2
+
 
 # The Rubric
 ## Application Setup
@@ -63,9 +53,9 @@ The project emphasizes using React to build the application and provides an API 
 
 ## Suggestions to Make Your Project Stand Out!
 - [x] Consider adding a books "detail" page to display more information about any particular book
-- [ ] Consider adding sign-up and log-in functionality to allow users to save their bookshelves to their accounts
+- [x] Consider adding sign-up and log-in functionality to allow users to save their bookshelves to their accounts
 - [x] Consider adding drag-and-drop functionality to move books between shelves
-- [ ] Consider adding a rating to your books
+- [x] Consider adding a rating to your books
 
 # Plan
 ## Steps
@@ -78,50 +68,43 @@ The project emphasizes using React to build the application and provides an API 
 - develop the app piece by piece
 
 ## Components
-- Header
+- App
+- NavBar
+- Search
+- SearchBar
+- SearchResults
+- Main
+- BooksShelves
 - BooksShelf
 - Book
+- Select
 - BookDetails
-- SearchBar
-
-## Pages
-- Main
-- Search
-
-### Main Page
-- Header
-- BookShelf
-  - Book
-    - BookDetails
-- Link To Search Page
-### Search Page
-- SearchBar 
-  - Book
-    - BookDetails
-- Link To Main Page
+- AnchorLink
+- NotFound
+- Loader
 
 # Tasks
 - [ ] Use throttle/debounce.
 - [ ] Add inverse data flow.
-- [ ] Add navigation.
+- [x] Add navigation.
 - [x] Add tilt effect.
 - [ ] Host The Project.
 - [ ] ScreenCast the Project and upload it to youtube.
 - [x] Spend some time working on HTML and CSS
 - [x] Add hover effects
-- [ ] Add Animation on scroll
-- [ ] Add Testing
 - [x] Use PropTypes
 - [x] Fix the problem if the first `<Select />` option
 - [x] Use Async/Await instead of promise chaining
 - [ ] Add EsLint
 - [ ] Add Prettier
 - [ ] Use TypeScript
-- [ ] Add Dark Mode
-- [ ] Make it responsive
+- [x] Add Dark Mode
+- [x] Make it responsive
 - [x] Add Confirm deletion
 - [x] Use BootStrap
-- [ ] Add Scroll in the bookshleves in the main page  
+- [x] Add custom scrollbar 
+- [x] Test the website on different browsers
+- [x] Fix the bug which is (when changing the user while on bookDetails)
 
 # Submission Instructions - Project Submission Checklist
 - [x] The project adheres the HTML style guidelines

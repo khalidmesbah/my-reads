@@ -3,22 +3,19 @@ import { Select } from "./index";
 import { Link } from "react-router-dom";
 const Book = ({ book, books, setBooks }) => {
   let mode = localStorage?.getItem("mode");
-  console.log(mode);
   const { title, authors } = book;
   const thumbnail =
     book?.imageLinks?.thumbnail || "https://via.placeholder.com/140/200";
 
   return (
-    <Link to={`/book/${book.id}`}>
-      <div className="d-flex flex-column" style={{ width: "140px" }}>
-        <div
-          style={{
-            position: "relative",
-            height: "200px",
-            display: "flex",
-            alignItems: "flex-end",
-          }}
-        >
+    <div className="d-flex flex-column" style={{ width: "140px" }}>
+      <div
+        className="position-relative d-flex align-items-end"
+        style={{
+          height: "200px",
+        }}
+      >
+        <Link to={`/book/${book.id}`} className="h-100 w-100">
           <img
             className="h-100 w-100 object-fit-cover"
             src={thumbnail}
@@ -27,14 +24,14 @@ const Book = ({ book, books, setBooks }) => {
               backgroundRepeat: "no-repeat",
             }}
           />
-          <Select book={book} books={books} setBooks={setBooks} />
-        </div>
-        <div className={mode ? "text-white" : "text-black"}>{title}</div>
-        <div className={mode ? "text-white-50" : "text-dark-50"}>
-          {Array.isArray(authors) ? authors.join(" | ") : authors}
-        </div>
+        </Link>
+        <Select book={book} books={books} setBooks={setBooks} />
       </div>
-    </Link>
+      <div className={mode ? "text-white" : "text-black"}>{title}</div>
+      <div className={mode ? "text-white-50" : "text-dark-50"}>
+        {Array.isArray(authors) ? authors.join(" | ") : authors}
+      </div>
+    </div>
   );
 };
 
