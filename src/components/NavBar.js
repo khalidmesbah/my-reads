@@ -15,7 +15,6 @@ function NavBar({ setHasUserChanged }) {
         <Link to="/" className="navbar-brand">
           <h1>MyReads</h1>
         </Link>
-
         <button
           className="navbar-toggler"
           data-bs-toggle="collapse"

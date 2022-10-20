@@ -25,6 +25,7 @@ const BookDetails = () => {
     previewLink
   } = book;
   const thumbnail = book?.imageLinks?.thumbnail || 'https://via.placeholder.com/140/200';
+
   return (
     <div className="flex-grow-1 d-flex justify-content-center align-items-center">
       {book ? (

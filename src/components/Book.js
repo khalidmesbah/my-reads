@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Select } from './index';
 import { Link } from 'react-router-dom';
+
 const Book = ({ book, books, setBooks }) => {
   let mode = localStorage?.getItem('mode');
   const { title, authors } = book;

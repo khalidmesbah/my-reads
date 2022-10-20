@@ -3,13 +3,7 @@ import { BookShelf } from './index';
 
 const BookShelves = ({ books, setBooks }) => {
   return (
-    <div
-      className="p-3 d-flex gap-5 flex-wrap flex-grow-1"
-      style={
-        {
-          // background:"red",
-        }
-      }>
+    <div className="p-3 d-flex gap-5 flex-wrap flex-grow-1">
       <BookShelf title="Want to Read" books={books} setBooks={setBooks} name="wantToRead" />
       <BookShelf
         title="Currently Reading"
