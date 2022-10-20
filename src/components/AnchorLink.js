@@ -5,10 +5,8 @@ const AnchorLink = ({ type }) => {
   return (
     <Link
       to={type === "main" ? "/" : "/search"}
-      className={`${type === "main" && "close-search"}`}
-    >
-      {type === "main" ? "Close" : type === "search" ? "Add a book" : null}
-    </Link>
+      className={`${type === "main" ? "close-search" : "open-search"}`}
+    />
   );
 };
 

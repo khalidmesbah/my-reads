@@ -118,6 +118,10 @@ The project emphasizes using React to build the application and provides an API 
 - [ ] Add Prettier
 - [ ] Use TypeScript
 - [ ] Add Dark Mode
+- [ ] Make it responsive
+- [x] Add Confirm deletion
+- [x] Use BootStrap
+- [ ] Add Scroll in the bookshleves in the main page  
 
 # Submission Instructions - Project Submission Checklist
 - [x] The project adheres the HTML style guidelines

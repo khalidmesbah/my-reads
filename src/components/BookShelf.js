@@ -4,19 +4,25 @@ import * as BooksAPI from "../BooksAPI";
 import Tilt from "react-tilt";
 
 const BookShelf = ({ name, title, books, setBooks }) => {
-  const update = async (book, shelf) => {
-    await BooksAPI.update(book, shelf);
-    book.shelf = shelf;
+  const update = (book, shelf) => {
+    BooksAPI.update(book, shelf);
     const oldBooks = books.filter((b) => b.id !== book.id);
+    book.shelf = shelf;
     setBooks([...oldBooks, book]);
   };
 
   return (
-    <div className="bookshelf">
-      <h2 className="bookshelf-title">{title}</h2>
-      <div className="bookshelf-books">
+    <div
+      className="bg-success d-flex flex-column flex-grow-1"
+      style={{ minWidth: "200px" }}
+    >
+      <h2 className="text-center">{title}</h2>
+      <div className="h-100">
         <ol
-          className="books-grid"
+          className="h-100 d-flex justify-content-center flex-wrap align-items-start gap-3 p-3"
+          style={{
+            listStyleType: "none",
+          }}
           name={name}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {

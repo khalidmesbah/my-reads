@@ -1,13 +1,262 @@
-html {
-  box-sizing: border-box;
-}
 *,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-body {
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none !important;
+}
+a,
+a:hover,
+a:visited,
+a:active {
+  color: inherit !important;
+}
+
+
+.book-shelf-changer {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #60ac5d;
+  background-image: url("./icons/arrow-drop-down.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.open-search {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2e7d32;
+  background-image: url("./icons/add.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  font-size: 0;
+}
+
+.close-search {
+  display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background: white;
+  background-image: url("./icons/arrow-back.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+}
+
+/* loader */
+
+.loader-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loader {
+  height: 20vmin;
+  width: 20vmin;
+  position: relative;
+  animation: spin 0.5s infinite steps(var(--count));
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  height: 25%;
+  width: 5%;
+  background: currentColor;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+    rotate(calc(((360 / var(--count)) * var(--index)) * 1deg))
+    translate(0, 100%);
+  opacity: calc(var(--index) / var(--count));
+}
+
+/* NotFound */
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: clamp(20px, 25vw, 25vh);
+  text-align: center;
+}
+
+/* books details */
+
+.book-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.book-details main {
+  padding: 20px;
+  width: 600px;
+  background: #0006;
+}
+
+.book-details main .details-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 20px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.book-details main .about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.book-details main .more-details {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: 30px;
+}
+.book-details main .info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.book-details main .info-text {
+  font-size: 22px;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.book-details .buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.book-details button * {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: inherit;
+  background: none;
+  padding: 0.75em 1.5em;
+  display: grid;
+  place-content: center;
+  --clr: #60ac5d;
+  --outline: 2px solid white;
+  border: 5px solid var(--clr);
+  background: var(--clr);
+  color: white;
+  outline: var(--outline);
+  transition: outline-offset 200ms ease;
+}
+
+.book-details button *:hover,
+.book-details button *:focus {
+  outline: var(--outline);
+  outline-offset: -6px;
+}
+
+/* switch button */
+.switch-wrapper {
+  display: flex;
+  font-size: 20px;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+}
+.switch {
+  position: relative;
+  width: 65px;
+  height: 27px;
+  margin: 0;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  background-color: darkgray;
+  transition: all 1s;
+  border-radius: 25px;
+}
+.switch::before {
+  content: "";
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  transition: all 0.5s;
+  transform: translate(2px, 2px);
+  transition-timing-function: cubic-bezier(0.81, -0.02, 0, 2.13);
+  transition-delay: 0.1s;
+  box-shadow: inset 2px 0px 4px rgba(0, 0, 0, 0.5),
+    -2px 0px 2px rgba(0, 0, 0, 0.5);
+  animation: off 1s forwards;
+}
+.switch:checked {
+  background-color: #0fbcf9;
+  transition: all 1s;
+}
+.switch:checked::before {
+  transition: all 0.5s;
+  transform: translate(40px, 2px);
+  transition-timing-function: cubic-bezier(0.81, -0.02, 0, 2.13);
+  box-shadow: inset -2px 0px 4px rgba(0, 0, 0, 0.5),
+    2px 0px 2px rgba(0, 0, 0, 0.5);
+  transition-delay: 0.1s;
+  right: 43px;
+  animation: on 1s forwards;
+}
+
+@keyframes on {
+  0%,
+  50%,
+  100% {
+    width: 23px;
+  }
+  25% {
+    width: 33px;
+  }
+}
+@keyframes off {
+  0%,
+  50%,
+  100% {
+    width: 23px;
+  }
+  25% {
+    width: 33px;
+  }
 }

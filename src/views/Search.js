@@ -1,46 +1,50 @@
-import { useEffect, useState } from "react";
-import { SearchBar, SearchResults } from "../index";
 import PropTypes from "prop-types";
-import * as BooksApi from "../../BooksAPI";
+import { useEffect, useState } from "react";
+import { SearchBar, SearchResults } from "../components/index";
+import * as BooksApi from "../BooksAPI";
+
 const Search = ({ books, setBooks }) => {
+  const [query, setQuery] = useState(localStorage?.getItem("query") || "");
   const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
   const [resultingBooks, setResultingBooks] = useState([]);
-  const [isNotFound, setIsNotFound] = useState(true);
+
   useEffect(() => {
+    localStorage.setItem("query", query);
+
+    setIsLoading(true);
+    let isCancelled = false;
     if (!query) {
+      setIsLoading(false);
       setResultingBooks([]);
-      setIsNotFound(true);
       return;
     }
     (async () => {
-      setIsLoading(true);
       const res = await BooksApi.search(query);
-      setIsLoading(false);
       if (!Array.isArray(res)) {
+        setIsLoading(false);
         setResultingBooks([]);
-        setIsNotFound(true);
         return;
       }
-      setIsNotFound(false);
+      if (isCancelled) return;
+
       res.forEach((book) => {
-        books.forEach((b) => {
-          if (b.id === book.id) {
-            book.shelf = b.shelf;
-          }
-        });
+        book.shelf = books.find((b) => b.id === book.id)?.shelf || "none";
       });
       setResultingBooks(res);
+      setIsLoading(false);
     })();
-  }, [query, books]);
+    return () => {
+      isCancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   return (
-    <div className="search-books">
+    <div className="w-100 d-flex flex-column">
       <SearchBar query={query} setQuery={setQuery} />
       <SearchResults
         resultingBooks={resultingBooks}
         isLoading={isLoading}
-        isNotFound={isNotFound}
         books={books}
         setBooks={setBooks}
       />

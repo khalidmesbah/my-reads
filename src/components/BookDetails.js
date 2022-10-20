@@ -62,7 +62,7 @@ const BookDetails = () => {
                 <p>
                   {Array.isArray(categories)
                     ? categories.join(" | ")
-                    : categories}
+                    : categories || "None"}
                 </p>
               </div>
               <div className="info">
