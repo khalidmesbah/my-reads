@@ -7,7 +7,7 @@ The project emphasizes using React to build the application and provides an API 
 - start the development server with `npm start`
 
 # The Stack
-HTML5 | CSS3 | JavaScript | ~~TypeScript~~ | React | React Router | React tilt | ~~Redux~~ | ~~Redux Toolkit~~ | ~~Express~~ | Node | JSX | Styled Components | BootStrap | Sweetalert2 | Prettier | EsLint | Create-React-App
+HTML5 | CSS3 | JavaScript | React | React Router | React tilt | Redux Toolkit | Node | JSX | Styled Components | BootStrap | Sweetalert2 | Prettier | EsLint | Create-React-App
 
 # The Rubric
 ## Application Setup
@@ -109,6 +109,10 @@ HTML5 | CSS3 | JavaScript | ~~TypeScript~~ | React | React Router | React tilt |
 - [x] Add custom scrollbar 
 - [x] Test the website on different browsers
 - [x] Fix the bug which is (when changing the user while on bookDetails)
+- [ ] Update the configurations / tooling
+- [ ] check prop-types
+- [x] Use optimistic updates
+- [x] the user already exists
 
 # Submission Instructions - Project Submission Checklist
 - [x] The project adheres the HTML style guidelines

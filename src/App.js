@@ -1,17 +1,30 @@
-import { useEffect, useState } from 'react';
-import { Main, Search, Loader, BookDetails, NavBar, NotFound } from './components/index';
+import { useEffect } from 'react';
+import {
+  Search,
+  Loader,
+  BookDetails,
+  NavBar,
+  NotFound,
+  SearchLink,
+  Main
+} from './components/index';
 import * as BooksAPI from './BooksAPI';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { useDispatch } from 'react-redux';
+import { fetchInitialBooks } from './store/slices/booksSlice';
+import { useState } from 'react';
 
 function App() {
-  const [books, setBooks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasUserChanged, setHasUserChanged] = useState(false);
+  const dispatch = useDispatch();
+  let isCancelled = false;
+  const [renderApp, setRenderApp] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    let isCancelled = false;
+    if (isCancelled) return;
     (async () => {
       setIsLoading(true);
       BooksAPI.headers.Authorization = localStorage.token;
@@ -20,33 +33,29 @@ function App() {
         return;
       }
       setIsNotFound(false);
-      const res = await BooksAPI.getAll();
-      if (isCancelled) return;
+      await dispatch(fetchInitialBooks());
       setIsLoading(false);
-      setBooks(res);
     })();
     return () => {
       isCancelled = true;
-      setIsLoading(false);
     };
-  }, [hasUserChanged]);
+  }, [renderApp]);
 
   return (
     <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
-      <NavBar setHasUserChanged={setHasUserChanged} />
+      <NavBar setRenderApp={setRenderApp} />
       {isNotFound ? (
-        <NotFound />
-      ) : books.length > 0 && !isLoading ? (
-        <div className="d-flex flex-grow-1">
-          <Routes>
-            <Route path="/" element={<Main books={books} setBooks={setBooks} />}></Route>
-            <Route path="/search" element={<Search books={books} setBooks={setBooks} />}></Route>
-            <Route path="/book/:id" element={<BookDetails />}></Route>
-          </Routes>
-        </div>
-      ) : (
+        <NotFound error="no users available" />
+      ) : isLoading ? (
         <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/book/:id" element={<BookDetails />}></Route>
+        </Routes>
       )}
+      <SearchLink />
     </div>
   );
 }

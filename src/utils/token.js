@@ -1,4 +1,6 @@
 import Swal from 'sweetalert2';
+import * as BooksAPI from '../BooksAPI';
+BooksAPI.headers.Authorization = localStorage.token;
 
 const usersTokens = localStorage?.getItem('usersTokens');
 if (!usersTokens) {
@@ -54,10 +56,7 @@ const deleteUser = () => {
           localStorage.setItem('usersTokens', JSON.stringify(usersTokens));
           setCurrentUser(getUsers()[0]);
           swalWithBootstrapButtons.fire('Deleted!', 'Your file has been deleted.', 'success');
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
         }
         resolve(result.isConfirmed);

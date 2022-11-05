@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import { Book, Loader, NotFound } from './index';
 import Tilt from 'react-tilt';
 
-const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
+const SearchResults = ({ resultingBooks, isLoading }) => {
   let isNotFound = resultingBooks.length === 0 ? true : false;
 
   return (
-    <div className="flex-grow-1">
+    <div className="d-flex flex-column flex-grow-1">
       {isLoading ? (
         <Loader />
       ) : isNotFound ? (
-        <NotFound />
+        <NotFound error="no search results" />
       ) : (
         <ol
           className="h-100 d-flex justify-content-center flex-wrap align-items-start gap-3 p-3"
@@ -27,7 +27,7 @@ const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
                 scale: 1.1
               }}>
               <li>
-                <Book book={book} books={books} setBooks={setBooks} />
+                <Book book={book} />
               </li>
             </Tilt>
           ))}
@@ -39,9 +39,7 @@ const SearchResults = ({ resultingBooks, isLoading, books, setBooks }) => {
 
 SearchResults.propTypes = {
   resultingBooks: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default SearchResults;

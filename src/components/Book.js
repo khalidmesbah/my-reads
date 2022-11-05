@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Select } from './index';
 import { Link } from 'react-router-dom';
 
-const Book = ({ book, books, setBooks }) => {
+const Book = ({ book }) => {
   let mode = localStorage?.getItem('mode');
   const { title, authors } = book;
   const thumbnail = book?.imageLinks?.thumbnail || 'https://via.placeholder.com/140/200';
@@ -24,7 +24,7 @@ const Book = ({ book, books, setBooks }) => {
             }}
           />
         </Link>
-        <Select book={book} books={books} setBooks={setBooks} />
+        <Select book={book} />
       </div>
       <div className={mode ? 'text-white' : 'text-black'}>{title}</div>
       <div className={mode ? 'text-white-50' : 'text-dark-50'}>
@@ -35,9 +35,7 @@ const Book = ({ book, books, setBooks }) => {
 };
 
 Book.propTypes = {
-  book: PropTypes.object.isRequired,
-  books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired
+  book: PropTypes.object.isRequired
 };
 
 export default Book;

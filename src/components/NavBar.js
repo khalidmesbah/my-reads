@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { addUser, getCurrentUser, getUsers, setCurrentUser, deleteUser } from '../utils/token';
 import PropTypes from 'prop-types';
 
-function NavBar({ setHasUserChanged }) {
+function NavBar({ setRenderApp }) {
   const navigate = useNavigate();
   let mode = localStorage?.getItem('mode');
   mode ? (document.body.className = 'bg-dark text-light') : (document.body.className = '');
-  const [isNewUserAdded, setIsNewUserAdded] = useState(false);
+  const [renderNavbar, setRenderNavbar] = useState(false);
 
   return (
     <nav className="navbar navbar-expand-xl navbar-dark bg-success">
@@ -26,17 +26,17 @@ function NavBar({ setHasUserChanged }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="nav">
-          <ul className="navbar-nav flex-grow-1 justify-content-around align-items-center">
+          <ul className="navbar-nav flex-grow-1 justify-content-around align-items-center gap-2">
             <li className="nav-item">
               <span className="navbar-text text-break d-flex align-items-center gap-2">
                 <span className="d-none d-sm-block">Signed In as:</span>
                 <select
-                  className="form-select w-auto"
+                  className="form-select w-75"
                   aria-label="select users"
                   defaultValue={getCurrentUser() || 'No Users Available'}
                   onChange={(e) => {
                     setCurrentUser(e.currentTarget.value);
-                    setHasUserChanged((prev) => !prev);
+                    setRenderApp((prev) => !prev);
                     navigate('/');
                   }}>
                   {getUsers().length === 0 && (
@@ -54,10 +54,7 @@ function NavBar({ setHasUserChanged }) {
                   onClick={() => {
                     deleteUser().then(
                       (res) => {
-                        setIsNewUserAdded(!isNewUserAdded);
-                        if (res === true) {
-                          setHasUserChanged((prev) => !prev);
-                        }
+                        res && setRenderApp((prev) => !prev);
                       },
                       (err) => console.error(err)
                     );
@@ -87,8 +84,8 @@ function NavBar({ setHasUserChanged }) {
                   }
                   addUser(value);
                   emailElement.value = '';
-                  setIsNewUserAdded(!isNewUserAdded);
-                  getUsers().length === 1 && setHasUserChanged((prev) => !prev);
+                  setRenderNavbar(!renderNavbar);
+                  getUsers().length === 1 && setRenderApp((prev) => !prev);
                 }}>
                 <input
                   className="form-control me-2"
@@ -103,10 +100,12 @@ function NavBar({ setHasUserChanged }) {
                 </button>
               </form>
             </li>
-            <li className="nav-item d-flex justify-content-center align-items-center">
-              <div className="form-check form-switch w-auto h-auto" style={{ cursor: 'pointer' }}>
+            <li className="nav-item d-flex justify-content-center align-items-center w-25">
+              <div
+                className="form-check form-switch p-0 d-flex justify-content-center flex-wrap gap-1 align-items-center w-auto"
+                style={{ cursor: 'pointer' }}>
                 <input
-                  className="form-check-input"
+                  className="form-check-input m-0"
                   type="checkbox"
                   role="button"
                   id="flexSwitchCheckDefault"
@@ -114,7 +113,7 @@ function NavBar({ setHasUserChanged }) {
                   onChange={(e) => {
                     let mode = e.currentTarget.checked ? 'dark' : '';
                     localStorage.setItem('mode', mode);
-                    setHasUserChanged((prev) => !prev);
+                    setRenderApp((prev) => !prev);
                   }}
                 />
                 <label
@@ -133,7 +132,7 @@ function NavBar({ setHasUserChanged }) {
 }
 
 NavBar.propTypes = {
-  setHasUserChanged: PropTypes.func.isRequired
+  setRenderApp: PropTypes.func.isRequired
 };
 
 export default NavBar;

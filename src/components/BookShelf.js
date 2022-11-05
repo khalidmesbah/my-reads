@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
 import { Book } from './index';
-import * as BooksAPI from '../BooksAPI';
 import Tilt from 'react-tilt';
+import { useDispatch, useSelector } from 'react-redux';
+import { switchShelf } from '../store/slices/booksSlice';
 
-const BookShelf = ({ name, title, books, setBooks }) => {
-  const update = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-    const oldBooks = books.filter((b) => b.id !== book.id);
-    book.shelf = shelf;
-    setBooks([...oldBooks, book]);
-  };
+const BookShelf = ({ name, title }) => {
+  const { books } = useSelector((s) => s);
+  const filteredBooks = books.filter((book) => book.shelf === name);
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -27,11 +25,10 @@ const BookShelf = ({ name, title, books, setBooks }) => {
           onDrop={(e) => {
             const shelf = e.currentTarget.getAttribute('name');
             let book = JSON.parse(e.dataTransfer.getData('book'));
-            update(book, shelf);
+            dispatch(switchShelf({ book, shelf }));
           }}>
-          {books
-            .filter((book) => book.shelf === name)
-            .map((book) => (
+          {filteredBooks.length ? (
+            filteredBooks.map((book) => (
               <Tilt
                 key={book.id}
                 options={{
@@ -45,10 +42,15 @@ const BookShelf = ({ name, title, books, setBooks }) => {
                   onDragStart={(e) => {
                     e.dataTransfer.setData(`book`, JSON.stringify(book));
                   }}>
-                  <Book book={book} books={books} setBooks={setBooks} />
+                  <Book book={book} />
                 </li>
               </Tilt>
-            ))}
+            ))
+          ) : (
+            <div className="d-flex justify-content-center align-items-center w-100 h-100 display-7">
+              No Books Here
+            </div>
+          )}
         </ol>
       </div>
     </div>
@@ -57,9 +59,7 @@ const BookShelf = ({ name, title, books, setBooks }) => {
 
 BookShelf.propTypes = {
   name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default BookShelf;

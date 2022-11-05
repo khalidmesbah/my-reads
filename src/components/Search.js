@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { SearchBar, SearchResults } from '../components/index';
+import { SearchBar, SearchResults } from './index';
 import * as BooksApi from '../BooksAPI';
+import { useSelector } from 'react-redux';
 
-const Search = ({ books, setBooks }) => {
+const Search = () => {
+  const { books } = useSelector((s) => s);
   const [query, setQuery] = useState(localStorage?.getItem('query') || '');
   const [isLoading, setIsLoading] = useState(false);
   const [resultingBooks, setResultingBooks] = useState([]);
 
   useEffect(() => {
     localStorage.setItem('query', query);
-
     setIsLoading(true);
+
     let isCancelled = false;
     if (!query) {
       setIsLoading(false);
@@ -36,25 +37,14 @@ const Search = ({ books, setBooks }) => {
     return () => {
       isCancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   return (
-    <div className="w-100 d-flex flex-column">
+    <div className="d-flex flex-column flex-grow-1">
       <SearchBar query={query} setQuery={setQuery} />
-      <SearchResults
-        resultingBooks={resultingBooks}
-        isLoading={isLoading}
-        books={books}
-        setBooks={setBooks}
-      />
+      <SearchResults resultingBooks={resultingBooks} isLoading={isLoading} />
     </div>
   );
-};
-
-Search.propTypes = {
-  books: PropTypes.array.isRequired,
-  setBooks: PropTypes.func.isRequired
 };
 
 export default Search;

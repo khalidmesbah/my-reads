@@ -87,12 +87,12 @@ const BookDetails = () => {
               </div>
             </div>
             <div className="d-flex justify-content-center align-items-center gap-5 flex-wrap">
-              <button className="btn btn-primary">
-                <a href={previewLink}>Preview</a>
-              </button>
-              <button className="btn btn-primary">
-                <Link to={'/'}>Home</Link>
-              </button>
+              <a className="btn btn-primary" href={previewLink}>
+                Preview
+              </a>
+              <Link className="btn btn-primary" to={'/'}>
+                Home
+              </Link>
             </div>
           </div>
           <div className="right">

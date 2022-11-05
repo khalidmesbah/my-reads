@@ -1,5 +1,5 @@
-import Main from '../views/Main';
-import Search from '../views/Search';
+import Main from './Main';
+import Search from './Search';
 import Select from './Select';
 import Book from './Book';
 import BookDetails from './BookDetails';
@@ -11,6 +11,7 @@ import Loader from './Loader';
 import NotFound from './NotFound';
 import SearchResults from './SearchResults';
 import BookShelves from './BookShelves';
+import SearchLink from './SearchLink';
 
 export {
   Select,
@@ -25,5 +26,6 @@ export {
   Loader,
   NotFound,
   SearchResults,
-  BookShelves
+  BookShelves,
+  SearchLink
 };
